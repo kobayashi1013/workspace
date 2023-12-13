@@ -33,18 +33,25 @@ public class Vector2
   }
 }
 
-public static class Raycast
+public class Raycast
 {
-  public static void raycast()
+  private float inc = 0; //傾き
+  
+  //ターゲット
+  public Raycast(Vector target)
+  {
+    
+  }
+  
+  public void raycast()
   {
     Vector2 ray = new Vector2(mouseX - playerX, mouseY - playerY); //方向ベクトル
-    float inc = 0; //傾き
     if (ray.x == 0) inc = 99999;
     else inc = ray.y / ray.x;
   }
   
-  public static void render()
+  public void render()
   {
-    //line(playerX + (width - playerY) / inc, inc(0 - playerX) + playerY,
+    line(0, inc * (0 - playerX) + playerY, width, inc * (width - playerX) + playerY);
   }
 }
