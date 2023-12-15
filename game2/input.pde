@@ -1,6 +1,3 @@
-//インスタンス
-Input input = new Input();
-
 //クラス
 public class Input
 {

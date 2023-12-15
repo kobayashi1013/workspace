@@ -1,11 +1,8 @@
-//インスタンス
-ArrayList<Bullet> bullet = new ArrayList<Bullet>();
-
 //クラス
 public class Bullet
 {
   private final float _size = 10; //サイズ
-  private final float _speed = 10; //弾速
+  private final float _speed = 50; //弾速
   
   private Vector2 _pos = new Vector2(0, 0);//座標
   private Vector2 _dir = new Vector2(0, 0); //向き

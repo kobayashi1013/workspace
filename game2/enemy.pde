@@ -1,6 +1,3 @@
-//インスタンス
-ArrayList<Enemy> enemy = new ArrayList<Enemy>();
-
 //クラス
 public class Enemy
 {
@@ -10,30 +7,44 @@ public class Enemy
   private Vector2 _size = new Vector2(50, 80); //サイズ
   private Vector2 _pos = new Vector2(0, 0); //座標
   private Vector2 _dir = new Vector2(0, 0); //向き
+  private boolean _active = true; //有効
   
   //初期化
   public Enemy(float px, float py)
   {
     _pos = new Vector2(px, py);
-    _dir = new Vector2(playerX - px, playerY - py);
-    _dir.Normalize(_speed);
   }
   
   //動作
   public void move()
   {
     //ベクトル計算
-    _dir = new Vector2(playerX - _pos.x, playerY - _pos.y);
+    _dir = new Vector2(playerPos.x - _pos.x, playerPos.y - _pos.y);
     _dir.Normalize(_speed);
     _pos.Add(_dir);
   }
 
-  //削除
-  public boolean destroy()
+  //衝突
+  public void collider()
   {
-    if (_pos.Distance(new Vector2(playerX, playerY)) < _playerDistance) return true;
-    return false;
+    //プレイヤーとの衝突
+    if (_pos.Distance(playerPos) < _playerDistance)
+    {
+      _active = false;
+    }
+    
+    //弾との衝突
+    for (int i = 0; i < ray_max; i++)
+    {
+      if (ray1.get(i).cast(_pos))
+      {
+        _active = false;
+      }
+    }
   }
+  
+  //削除
+  public boolean destroy() { return !_active; }
   
   //描画
   public void render()

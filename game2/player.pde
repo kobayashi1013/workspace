@@ -1,6 +1,3 @@
-//インスタンス
-Player player = new Player(width / 2, height / 2);
-
 //クラス
 public class Player
 {
@@ -43,8 +40,7 @@ public class Player
     //ベクトル計算
     _pos.x += ix * _speed * correction;
     _pos.y += iy * _speed * correction;
-    playerX = _pos.x;
-    playerY = _pos.y;
+    playerPos = new Vector2(_pos.x, _pos.y);
   }
   
   //弾発射
@@ -56,7 +52,6 @@ public class Player
       if (frameCount % _interval == 0)
       {
         bullet.add(new Bullet(0, _pos.x - 25, _pos.y + 20, mouseX, mouseY));
-        //bullet[bullet_no++] = new Bullet(0, _pos.x - 25, _pos.y + 20, mouseX, mouseY);
       }
     }
 
